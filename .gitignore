@@ -9,3 +9,4 @@ bin
 obj
 
 /src/AzUtility.BlobUploader/Properties
+/src/AzUtility.CosmosDBCompass/Properties/launchSettings.json
