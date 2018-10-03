@@ -2,6 +2,10 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
+*.user
+
 .vs
 bin
 obj
+
+/src/AzUtility.BlobUploader/Properties
