@@ -1,18 +1,13 @@
 FROM microsoft/azure-storage-emulator
 
-WORKDIR /app
-
 RUN powershell.exe -Command \
     $ErrorActionPreference = 'Stop'; \
-    Invoke-WebRequest https://aka.ms/vs/15/release/vc_redist.x64.exe -OutFile c:\vc_redist.x64.exe; \
-    Start-Process c:\vc_redist.x64.exe -ArgumentList '/quiet /install' -Wait; \
-    Remove-Item c:\vc_redist.x64.exe -Force;
+    [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; \
+    Invoke-WebRequest https://github.com/weng5e/AzUtility/releases/download/0.0.1/BlobUploader.zip -OutFile C:\BlobUploader.zip; \
+    Expand-Archive -LiteralPath C:\BlobUploader.zip -DestinationPath C:\app; \
+    Remove-Item C:\BlobUploader.zip -Force;
 
-COPY Gateway.zip /Gateway.zip
+ADD sample-data ../app/sample-data
+COPY InitCmd.bat ../InitCmd.bat
 
-RUN powershell.exe -Command \
-    $ErrorActionPreference = 'Stop'; \
-    Expand-Archive -LiteralPath C:\Gateway.zip -DestinationPath C:\app; \
-    Remove-Item C:\Gateway.zip;
-    
-https://github.com/weng5e/AzUtility/releases/download/0.0.1/BlobUploader.zip
+CMD ["c:\\InitCmd.bat"]
