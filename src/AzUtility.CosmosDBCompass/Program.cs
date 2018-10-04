@@ -33,6 +33,11 @@ namespace AzUtility.CosmosDBCompass
                     var downloader = new CosmosDownloader(client, fullDir);
                     downloader.RunAsync().Wait();
                 }
+                else
+                {
+                    var uploader = new CosmosUploader(client, fullDir);
+                    uploader.RunAsync().Wait();
+                }
             }
             else
             {
