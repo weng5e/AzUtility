@@ -7,6 +7,8 @@
 .vs
 bin
 obj
+sample-data
 
 /src/AzUtility.BlobUploader/Properties
 /src/AzUtility.CosmosDBCompass/Properties/launchSettings.json
+

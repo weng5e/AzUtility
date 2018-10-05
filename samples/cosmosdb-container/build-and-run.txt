@@ -1,0 +1,7 @@
+docker build . -t mock-cosmos
+
+docker run -m 2g -p 8081:8081 -i microsoft/azure-cosmosdb-emulator
+
+docker run -m 2g -p 8081:8081 mock-cosmos
+
+docker run -m 2g -p 8081:8081 -i mock-cosmos

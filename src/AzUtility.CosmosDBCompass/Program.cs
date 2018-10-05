@@ -2,6 +2,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.IO;
+using System.Threading;
 
 namespace AzUtility.CosmosDBCompass
 {
@@ -20,6 +21,9 @@ namespace AzUtility.CosmosDBCompass
         [Required]
         public string ConnectionString { get; set; }
 
+        [Option("-k", "Block and do not exit.", CommandOptionType.NoValue)]
+        public bool Block { get; }
+
         public void OnExecute()
         {
             var mode = Backup ? "Download" : "Upload";
@@ -37,6 +41,11 @@ namespace AzUtility.CosmosDBCompass
                 {
                     var uploader = new CosmosUploader(client, fullDir);
                     uploader.RunAsync().Wait();
+                }
+
+                if (Block)
+                {
+                    Thread.Sleep(Timeout.Infinite);
                 }
             }
             else
