@@ -3,7 +3,7 @@ FROM microsoft/azure-cosmosdb-emulator
 RUN powershell.exe -Command \
     $ErrorActionPreference = 'Stop'; \
     [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; \
-    Invoke-WebRequest https://github.com/weng5e/AzUtility/releases/download/0.0.2/CosmosDBCompass.zip -OutFile C:\CosmosDBCompass.zip; \
+    Invoke-WebRequest https://github.com/weng5e/AzUtility/releases/download/0.0.3/CosmosDBCompass.zip -OutFile C:\CosmosDBCompass.zip; \
     Expand-Archive -LiteralPath C:\CosmosDBCompass.zip -DestinationPath C:\app; \
     Remove-Item C:\CosmosDBCompass.zip -Force;
 
